@@ -16,6 +16,9 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class StateEventData;
+@class StateMachine;
+
 // A state is a logical unit of work that happens in response to some stimuli.
 // States transition between each other on events.
 @interface State : NSObject {

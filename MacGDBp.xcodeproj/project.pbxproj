@@ -23,6 +23,11 @@
 		1E1090C3136E541B002E34E0 /* test_main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1E1090C1136E5404002E34E0 /* test_main.mm */; };
 		1E1090F1136E55F1002E34E0 /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1E1090D1136E5584002E34E0 /* gtest-all.cc */; };
 		1E1090F7136E560D002E34E0 /* libgoogletest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E1090EE136E55E1002E34E0 /* libgoogletest.a */; };
+		1E109133136E5861002E34E0 /* StateSystemControllerTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1E109132136E5861002E34E0 /* StateSystemControllerTest.mm */; };
+		1E109142136E58FC002E34E0 /* StateSystemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E109062136E4A2F002E34E0 /* StateSystemController.m */; };
+		1E109143136E58FC002E34E0 /* StateMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E109059136E49F7002E34E0 /* StateMachine.m */; };
+		1E109144136E58FC002E34E0 /* State.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E10905F136E4A1A002E34E0 /* State.m */; };
+		1E109145136E58FC002E34E0 /* StateEventData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E10907E136E4AC3002E34E0 /* StateEventData.m */; };
 		1E11814A1319805E003BFEF1 /* BSSourceViewTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1181491319805E003BFEF1 /* BSSourceViewTextView.m */; };
 		1E1E53030DF9B89800D334F9 /* Breakpoints.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E1E53010DF9B89800D334F9 /* Breakpoints.xib */; };
 		1E2F0A6912D5371C00EBF675 /* Stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E2F0A6812D5371B00EBF675 /* Stop.png */; };
@@ -113,6 +118,7 @@
 		1E1090C1136E5404002E34E0 /* test_main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = test_main.mm; path = Tests/test_main.mm; sourceTree = "<group>"; };
 		1E1090D1136E5584002E34E0 /* gtest-all.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "gtest-all.cc"; path = "googletest/src/gtest-all.cc"; sourceTree = "<group>"; };
 		1E1090EE136E55E1002E34E0 /* libgoogletest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libgoogletest.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E109132136E5861002E34E0 /* StateSystemControllerTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = StateSystemControllerTest.mm; path = Tests/StateSystemControllerTest.mm; sourceTree = "<group>"; };
 		1E1181481319805E003BFEF1 /* BSSourceViewTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSSourceViewTextView.h; path = Source/BSSourceViewTextView.h; sourceTree = "<group>"; };
 		1E1181491319805E003BFEF1 /* BSSourceViewTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSSourceViewTextView.m; path = Source/BSSourceViewTextView.m; sourceTree = "<group>"; };
 		1E1E53020DF9B89800D334F9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Breakpoints.xib; sourceTree = "<group>"; };
@@ -273,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				1E1090C1136E5404002E34E0 /* test_main.mm */,
+				1E109132136E5861002E34E0 /* StateSystemControllerTest.mm */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -574,6 +581,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E1090C3136E541B002E34E0 /* test_main.mm in Sources */,
+				1E109133136E5861002E34E0 /* StateSystemControllerTest.mm in Sources */,
+				1E109142136E58FC002E34E0 /* StateSystemController.m in Sources */,
+				1E109143136E58FC002E34E0 /* StateMachine.m in Sources */,
+				1E109144136E58FC002E34E0 /* State.m in Sources */,
+				1E109145136E58FC002E34E0 /* StateEventData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

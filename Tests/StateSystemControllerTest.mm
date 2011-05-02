@@ -14,30 +14,33 @@
  * write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#import "StateSystemController.h"
+#include <gtest/gtest.h>
 
-#import "StateMachine.h"
+#include "StateMachine.h"
+#include "StateSystemController.h"
 
-@implementation StateSystemController
-
-- (id)init
-{
-  if ((self = [super init])) {
-    stateMachines_ = [[NSMutableArray alloc] init];
+class StateSystemControllerTest : public testing::Test {
+ public:
+  virtual void SetUp() {
+    controller_ = [[StateSystemController alloc] init];
   }
-  return self;
-}
 
-- (void)dealloc
+  virtual void TearDown() {
+    [controller_ release];
+  }
+
+  StateSystemController* controller() { return controller_; }
+
+ private:
+  StateSystemController* controller_;
+};
+
+TEST_F(StateSystemControllerTest, Init)
 {
-  [stateMachines_ release];
-  [super dealloc];
 }
 
-- (void)startMachine:(StateMachine*)machine
+TEST_F(StateSystemControllerTest, StartEmptyMachine)
 {
-  [stateMachines_ addObject:machine];
-  [machine startMachine];
+  StateMachine* machine = [[StateMachine alloc] initWithInitialState:nil];
+  [controller() startMachine:machine];
 }
-
-@end

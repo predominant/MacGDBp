@@ -16,6 +16,9 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class StateEventData;
+@class StateMachine;
+
 // The StateSystemController manages multiple StateMachines and routes events
 // to the right ones, causing transitions.
 @interface StateSystemController : NSObject {

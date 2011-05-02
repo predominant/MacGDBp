@@ -16,6 +16,9 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class State;
+@class StateEventData;
+
 // A StateMachine manages the transitions from one state to another.
 @interface StateMachine : NSObject {
  @private

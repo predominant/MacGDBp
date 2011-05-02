@@ -19,4 +19,22 @@
 
 @implementation StateMachine
 
+- (id)initWithInitialState:(State*)initialState
+{
+  if ((self = [super init])) {
+    initialState_ = [initialState retain];
+  }
+  return self;
+}
+
+- (void)dealloc
+{
+  [initialState_ release];
+  [super dealloc];
+}
+
+- (void)startMachine
+{
+}
+
 @end
