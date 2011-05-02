@@ -16,6 +16,7 @@
 
 #include <gtest/gtest.h>
 
+#include "Fixtures.h"
 #include "StateMachine.h"
 #include "StateSystemController.h"
 
@@ -39,8 +40,12 @@ TEST_F(StateSystemControllerTest, Init)
 {
 }
 
-TEST_F(StateSystemControllerTest, StartEmptyMachine)
+TEST_F(StateSystemControllerTest, SingleStateMachine)
 {
-  StateMachine* machine = [[StateMachine alloc] initWithInitialState:nil];
+  TestState* state = [[TestState alloc] initWithMachine:nil historicalEvent:nil];
+  StateMachine* machine = [[StateMachine alloc] initWithInitialState:state];
   [controller() startMachine:machine];
+  EXPECT_EQ(state, [machine currentState]);
+  [state release];
+  [machine release];
 }

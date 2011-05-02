@@ -16,6 +16,8 @@
 
 #import "StateMachine.h"
 
+#import "State.h"
+
 
 @implementation StateMachine
 
@@ -23,6 +25,8 @@
 {
   if ((self = [super init])) {
     initialState_ = [initialState retain];
+    pendingEvents_ = [[NSMutableDictionary alloc] init];
+    states_ = [[NSMutableArray alloc] init];
   }
   return self;
 }
@@ -30,11 +34,38 @@
 - (void)dealloc
 {
   [initialState_ release];
+  [pendingEvents_ release];
+  [states_ release];
   [super dealloc];
 }
 
 - (void)startMachine
 {
+  State* state = [initialState_ autorelease];
+  initialState_ = nil;
+  [self transitionToState:state];
+}
+
+- (void)transitionToState:(State*)state
+{
+  if ([self currentState])
+    [[self currentState] exitState];
+  [states_ addObject:state];
+  [state enterState];
+}
+
+- (State*)currentState
+{
+  if (![states_ count])
+    return nil;
+  return [states_ lastObject];
+}
+
+- (State*)previousState
+{
+  if ([states_ count] < 2)
+    return nil;
+  return [states_ objectAtIndex:[states_ count] - 2];
 }
 
 @end

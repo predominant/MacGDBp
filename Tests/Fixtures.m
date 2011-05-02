@@ -14,40 +14,10 @@
  * write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#import "State.h"
+#import "Fixtures.h"
 
-#import "StateMachine.h"
 
-@implementation State
-
-- (id)initWithMachine:(StateMachine*)machine
-      historicalEvent:(StateEventData*)data
-{
-  if ((self = [super init])) {
-    machine_ = machine;
-    event_ = data;
-  }
-  return self;
-}
-
-+ (StateMachine*)newAsInitialState
-{
-  State* state = [[[State alloc] initWithMachine:nil historicalEvent:nil] autorelease];
-  StateMachine* machine = [[StateMachine alloc] initWithInitialState:state];
-  state->machine_ = machine;
-  return machine;
-}
-
-+ (BOOL)isEndState
-{
-  return NO;
-}
-
-- (void)enterState
-{}
-
-- (void)exitState
-{}
+@implementation TestState
 
 - (State*)transitionWithEvent:(StateEventData*)event
 {
