@@ -67,8 +67,7 @@
 
 - (void)transitionToState:(State*)state
 {
-  if ([self currentState])
-    [[self currentState] exitState];
+  [[self currentState] exitState];
   [states_ addObject:state];
   [state enterState];
 }

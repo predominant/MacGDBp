@@ -46,6 +46,7 @@
 		1E9583200E2531BD001A3D89 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E95831F0E2531BD001A3D89 /* Sparkle.framework */; };
 		1E95834C0E2531D5001A3D89 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1E95831F0E2531BD001A3D89 /* Sparkle.framework */; };
 		1EB7BED50ECF3CA90033283A /* StackFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EB7BED40ECF3CA90033283A /* StackFrame.m */; };
+		1EBA7AB9137104BB002AB849 /* StateMachineTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1EBA7AB8137104BB002AB849 /* StateMachineTest.mm */; };
 		1EBF4D5D0EE35F0700B62769 /* StackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF4D5C0EE35F0700B62769 /* StackController.m */; };
 		1EC1337E127DBB00007946FC /* VariableNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC1337D127DBB00007946FC /* VariableNode.m */; };
 		1EC6965712BBC6A700A8D984 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1EC6965112BBC6A700A8D984 /* LICENSE */; };
@@ -147,6 +148,7 @@
 		1E95831F0E2531BD001A3D89 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		1EB7BED30ECF3CA90033283A /* StackFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StackFrame.h; path = Source/StackFrame.h; sourceTree = "<group>"; };
 		1EB7BED40ECF3CA90033283A /* StackFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StackFrame.m; path = Source/StackFrame.m; sourceTree = "<group>"; };
+		1EBA7AB8137104BB002AB849 /* StateMachineTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = StateMachineTest.mm; path = Tests/StateMachineTest.mm; sourceTree = "<group>"; };
 		1EBF4D5B0EE35F0700B62769 /* StackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StackController.h; path = Source/StackController.h; sourceTree = "<group>"; };
 		1EBF4D5C0EE35F0700B62769 /* StackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StackController.m; path = Source/StackController.m; sourceTree = "<group>"; };
 		1EC1337C127DBB00007946FC /* VariableNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VariableNode.h; path = Source/VariableNode.h; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				1E109132136E5861002E34E0 /* StateSystemControllerTest.mm */,
 				1E10923B136E6A56002E34E0 /* Fixtures.h */,
 				1E10923C136E6A56002E34E0 /* Fixtures.m */,
+				1EBA7AB8137104BB002AB849 /* StateMachineTest.mm */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -592,6 +595,7 @@
 				1E109144136E58FC002E34E0 /* State.m in Sources */,
 				1E109145136E58FC002E34E0 /* StateEventData.m in Sources */,
 				1E10923D136E6A56002E34E0 /* Fixtures.m in Sources */,
+				1EBA7AB9137104BB002AB849 /* StateMachineTest.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
