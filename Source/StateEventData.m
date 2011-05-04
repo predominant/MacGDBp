@@ -16,7 +16,42 @@
 
 #import "StateEventData.h"
 
+static NSString* const kPendingEventIDKey = @"org.bluestatic.PendingEventID";
 
 @implementation StateEventData
+
+@synthesize info = info_;
+
+- (id)initWithInfo:(NSMutableDictionary*)info
+{
+  if ((self = [super init])) {
+    info_ = [info retain];
+    if (!info_) {
+      info_ = [[NSMutableDictionary alloc] init];
+    }
+  }
+  return self;
+}
+
+- (void)dealloc
+{
+  [info_ release];
+  [super dealloc];
+}
+
+- (id)initWithPendingEventID:(id)pendingID
+                 contextInfo:(NSMutableDictionary*)info
+{
+  if ((self = [self initWithInfo:info])) {
+    [info_ setObject:pendingID forKey:kPendingEventIDKey];
+  }
+  return self;
+}
+
+- (BOOL)matchesPendingEvent:(StateEventData*)other
+{
+  id otherKey = [other.info objectForKey:kPendingEventIDKey];
+  return [[self.info objectForKey:kPendingEventIDKey] isEqual:otherKey];
+}
 
 @end

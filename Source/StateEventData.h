@@ -25,7 +25,9 @@
 
 - (id)initWithInfo:(NSMutableDictionary*)info;
 
-- (id)initWithPendingEventID:(NSNumber*)pendingID
+- (id)initWithPendingEventID:(id)pendingID
                  contextInfo:(NSMutableDictionary*)info;
+
+- (BOOL)matchesPendingEvent:(StateEventData*)other;
 
 @end

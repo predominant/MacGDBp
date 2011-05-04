@@ -17,7 +17,7 @@
 #import "StateMachine.h"
 
 #import "State.h"
-
+#import "StateEventData.h"
 
 @implementation StateMachine
 
@@ -46,12 +46,32 @@
   [self transitionToState:state];
 }
 
+- (BOOL)wantsEvent:(StateEventData*)event
+{
+  for (StateEventData* pendingEvent in pendingEvents_)
+    if ([event matchesPendingEvent:pendingEvent])
+      return YES;
+  return NO;
+}
+
+- (State*)transitionWithEvent:(StateEventData*)event
+{
+  State* nextState = [[self currentState] transitionWithEvent:event];
+  [self transitionToState:nextState];
+  return nextState;
+}
+
 - (void)transitionToState:(State*)state
 {
   if ([self currentState])
     [[self currentState] exitState];
   [states_ addObject:state];
   [state enterState];
+}
+
+- (void)state:(State*)state isWaitingForEvent:(StateEventData*)pendingEvent
+{
+  [pendingEvents_ setObject:state forKey:pendingEvent];
 }
 
 - (State*)currentState
@@ -66,6 +86,11 @@
   if ([states_ count] < 2)
     return nil;
   return [states_ objectAtIndex:[states_ count] - 2];
+}
+
+- (BOOL)isAtEnd
+{
+  return [[[self currentState] class] isEndState];
 }
 
 @end

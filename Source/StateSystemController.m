@@ -34,6 +34,14 @@
   [super dealloc];
 }
 
+- (void)dispatchEvent:(StateEventData*)event
+{
+  for (StateMachine* machine in stateMachines_)
+    // Events do not have to be unique amongst machines.
+    if ([machine wantsEvent:event])
+      [machine transitionWithEvent:event];
+}
+
 - (void)startMachine:(StateMachine*)machine
 {
   [stateMachines_ addObject:machine];

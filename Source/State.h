@@ -26,6 +26,7 @@
   StateMachine* machine_;
   StateEventData* event_;
 }
+@property(nonatomic, assign) StateMachine* machine;
 
 // Creates a new state with the option of carrying content over through the
 // shared data structure.

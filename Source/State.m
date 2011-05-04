@@ -20,6 +20,8 @@
 
 @implementation State
 
+@synthesize machine = machine_;
+
 - (id)initWithMachine:(StateMachine*)machine
       historicalEvent:(StateEventData*)data
 {
@@ -34,7 +36,7 @@
 {
   State* state = [[[State alloc] initWithMachine:nil historicalEvent:nil] autorelease];
   StateMachine* machine = [[StateMachine alloc] initWithInitialState:state];
-  state->machine_ = machine;
+  state.machine = machine;
   return machine;
 }
 
