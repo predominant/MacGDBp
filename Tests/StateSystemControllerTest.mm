@@ -17,6 +17,7 @@
 #include <gtest/gtest.h>
 
 #include "Fixtures.h"
+#include "StateEventData.h"
 #include "StateMachine.h"
 #include "StateSystemController.h"
 
@@ -47,5 +48,31 @@ TEST_F(StateSystemControllerTest, SingleStateMachine)
   [controller() startMachine:machine];
   EXPECT_EQ(state, [machine currentState]);
   [state release];
+  [machine release];
+}
+
+TEST_F(StateSystemControllerTest, DispatchEvent)
+{
+  TestState* state = [[TestState alloc] initWithMachine:nil historicalEvent:nil];
+  StateMachine* machine = [[StateMachine alloc] initWithInitialState:state];
+  TestState* nextState = [[TestState alloc] initWithMachine:machine historicalEvent:nil];
+  state.nextState = nextState;
+
+  StateEventData* pendingEvent = [[[StateEventData alloc] initWithPendingEventID:@"peid"
+                                                                     contextInfo:nil] autorelease];
+  [machine state:state isWaitingForEvent:pendingEvent];
+
+  [controller() startMachine:machine];
+  EXPECT_FALSE([machine previousState]);
+  EXPECT_EQ(state, [machine currentState]);
+
+  StateEventData* realEvent = [[[StateEventData alloc] initWithPendingEventID:@"peid"
+                                                                  contextInfo:nil] autorelease];
+  [controller() dispatchEvent:realEvent];
+  EXPECT_EQ(state, [machine previousState]);
+  EXPECT_EQ(nextState, [machine currentState]);
+
+  [state release];
+  [nextState release];
   [machine release];
 }

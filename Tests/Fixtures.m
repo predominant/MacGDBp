@@ -19,9 +19,11 @@
 
 @implementation TestState
 
+@synthesize nextState = nextState_;
+
 - (State*)transitionWithEvent:(StateEventData*)event
 {
-  return nil;
+  return self.nextState;
 }
 
 @end

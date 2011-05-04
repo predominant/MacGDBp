@@ -23,7 +23,7 @@
 @interface StateMachine : NSObject {
  @private
   State* initialState_;
-  NSMutableDictionary* pendingEvents_;
+  NSMapTable* pendingEvents_;
   NSMutableArray* states_;
 }
 

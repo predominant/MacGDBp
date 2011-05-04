@@ -25,7 +25,11 @@
 {
   if ((self = [super init])) {
     initialState_ = [initialState retain];
-    pendingEvents_ = [[NSMutableDictionary alloc] init];
+    pendingEvents_ =
+        [[NSMapTable alloc] initWithKeyOptions:NSMapTableStrongMemory |
+                                               NSMapTableObjectPointerPersonality
+                                  valueOptions:NSMapTableStrongMemory
+                                      capacity:8];
     states_ = [[NSMutableArray alloc] init];
   }
   return self;

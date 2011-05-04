@@ -18,5 +18,10 @@
 
 #import "State.h"
 
-@interface TestState : State
+@interface TestState : State {
+ @private
+  // The state returned by |-transitionWithEvent:|.
+  State* nextState_;
+}
+@property (nonatomic, assign) State* nextState;
 @end
