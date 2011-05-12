@@ -28,6 +28,6 @@
 - (id)initWithPendingEventID:(id)pendingID
                  contextInfo:(NSMutableDictionary*)info;
 
-- (BOOL)matchesPendingEvent:(StateEventData*)other;
+- (BOOL)matchesEvent:(StateEventData*)other;
 
 @end

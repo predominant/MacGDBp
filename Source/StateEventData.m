@@ -48,7 +48,7 @@ static NSString* const kPendingEventIDKey = @"org.bluestatic.PendingEventID";
   return self;
 }
 
-- (BOOL)matchesPendingEvent:(StateEventData*)other
+- (BOOL)matchesEvent:(StateEventData*)other
 {
   id otherKey = [other.info objectForKey:kPendingEventIDKey];
   return [[self.info objectForKey:kPendingEventIDKey] isEqual:otherKey];

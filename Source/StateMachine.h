@@ -22,8 +22,8 @@
 // A StateMachine manages the transitions from one state to another.
 @interface StateMachine : NSObject {
  @private
-  State* initialState_;
-  NSMapTable* pendingEvents_;
+  State* initialState_;  // strong
+  StateEventData* pendingEvent_;  // weak
   NSMutableArray* states_;
 }
 
@@ -44,9 +44,9 @@
 // This causes the machine to perform an actual transition and calls the
 // appropriate methods on each state, as well as updating the internal context.
 - (void)transitionToState:(State*)state;
-// Notifies the machine that a state has finished its work and is waiting for
-// a specific event response to transition.
-- (void)state:(State*)state isWaitingForEvent:(StateEventData*)pendingEvent;
+// Notifies the machine that the current state is waiting for a specific event
+// response before transitioning.
+- (void)waitForEvent:(StateEventData*)event;
 
 // Queries the machine for the current state.
 - (State*)currentState;

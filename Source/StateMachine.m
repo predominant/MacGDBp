@@ -25,11 +25,6 @@
 {
   if ((self = [super init])) {
     initialState_ = [initialState retain];
-    pendingEvents_ =
-        [[NSMapTable alloc] initWithKeyOptions:NSMapTableStrongMemory |
-                                               NSMapTableObjectPointerPersonality
-                                  valueOptions:NSMapTableStrongMemory
-                                      capacity:8];
     states_ = [[NSMutableArray alloc] init];
   }
   return self;
@@ -38,7 +33,7 @@
 - (void)dealloc
 {
   [initialState_ release];
-  [pendingEvents_ release];
+  [pendingEvent_ release];
   [states_ release];
   [super dealloc];
 }
@@ -52,10 +47,7 @@
 
 - (BOOL)wantsEvent:(StateEventData*)event
 {
-  for (StateEventData* pendingEvent in pendingEvents_)
-    if ([event matchesPendingEvent:pendingEvent])
-      return YES;
-  return NO;
+  return [pendingEvent_ matchesEvent:event];
 }
 
 - (State*)transitionWithEvent:(StateEventData*)event
@@ -72,9 +64,10 @@
   [state enterState];
 }
 
-- (void)state:(State*)state isWaitingForEvent:(StateEventData*)pendingEvent
+- (void)waitForEvent:(StateEventData*)event
 {
-  [pendingEvents_ setObject:state forKey:pendingEvent];
+  [pendingEvent_ release];
+  pendingEvent_ = [event retain];
 }
 
 - (State*)currentState

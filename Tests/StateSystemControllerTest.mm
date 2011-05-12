@@ -60,7 +60,7 @@ TEST_F(StateSystemControllerTest, DispatchEvent)
 
   StateEventData* pendingEvent = [[[StateEventData alloc] initWithPendingEventID:@"peid"
                                                                      contextInfo:nil] autorelease];
-  [machine state:state isWaitingForEvent:pendingEvent];
+  [machine waitForEvent:pendingEvent];
 
   [controller() startMachine:machine];
   EXPECT_FALSE([machine previousState]);
