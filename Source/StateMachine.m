@@ -53,7 +53,8 @@
 - (State*)transitionWithEvent:(StateEventData*)event
 {
   State* nextState = [[self currentState] transitionWithEvent:event];
-  [self transitionToState:nextState];
+  if (nextState)
+    [self transitionToState:nextState];
   return nextState;
 }
 

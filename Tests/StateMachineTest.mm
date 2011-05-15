@@ -32,12 +32,16 @@ class StateMachineTest : public testing::Test {
 
   StateMachine* machine() { return machine_; }
 
+  TestState* MakeState() {
+    return [[[TestState alloc] initWithMachine:nil historicalEvent:nil] autorelease];
+  }
+
  private:
   StateMachine* machine_;
 };
 
 TEST_F(StateMachineTest, InitWithState) {
-  TestState* state = [[[TestState alloc] initWithMachine:nil historicalEvent:nil] autorelease];
+  TestState* state = MakeState();
   StateMachine* machine = [[[StateMachine alloc] initWithInitialState:state] autorelease];
 
   EXPECT_FALSE([machine previousState]);
@@ -49,7 +53,7 @@ TEST_F(StateMachineTest, InitWithState) {
 }
 
 TEST_F(StateMachineTest, TransitionToState) {
-  TestState* state = [[[TestState alloc] initWithMachine:nil historicalEvent:nil] autorelease];
+  TestState* state = MakeState();
 
   EXPECT_FALSE([machine() previousState]);
   EXPECT_FALSE([machine() currentState]);
@@ -57,4 +61,51 @@ TEST_F(StateMachineTest, TransitionToState) {
   [machine() transitionToState:state];
   EXPECT_FALSE([machine() previousState]);
   EXPECT_EQ(state, [machine() currentState]);
+}
+
+TEST_F(StateMachineTest, TransitionThreeTimes) {
+  TestState* initial = MakeState();
+  TestState* middle = MakeState();
+  initial.nextState = middle;
+  TestState* end = [[[EndState alloc] initWithMachine:nil historicalEvent:nil] autorelease];
+  middle.nextState = end;
+
+  StateMachine* machine = [[[StateMachine alloc] initWithInitialState:initial] autorelease];
+  [machine startMachine];
+
+  EXPECT_EQ(nil, [machine previousState]);
+  EXPECT_EQ(initial, [machine currentState]);
+  EXPECT_FALSE([machine isAtEnd]);
+
+  [machine transitionWithEvent:nil];
+  EXPECT_EQ(initial, [machine previousState]);
+  EXPECT_EQ(middle, [machine currentState]);
+  EXPECT_FALSE([machine isAtEnd]);
+
+  [machine transitionWithEvent:nil];
+  EXPECT_EQ(middle, [machine previousState]);
+  EXPECT_EQ(end, [machine currentState]);
+  EXPECT_TRUE([machine isAtEnd]);
+}
+
+TEST_F(StateMachineTest, TransitionAfterEnd) {
+  TestState* initial = MakeState();
+  TestState* middle = MakeState();
+  initial.nextState = middle;
+  TestState* end = [[[EndState alloc] initWithMachine:nil historicalEvent:nil] autorelease];
+  middle.nextState = end;
+  
+  StateMachine* machine = [[[StateMachine alloc] initWithInitialState:initial] autorelease];
+  [machine startMachine];
+  EXPECT_EQ(middle, [machine transitionWithEvent:nil]);
+  EXPECT_EQ(end, [machine transitionWithEvent:nil]);
+
+  EXPECT_EQ(middle, [machine previousState]);
+  EXPECT_EQ(end, [machine currentState]);
+  EXPECT_TRUE([machine isAtEnd]);
+
+  EXPECT_FALSE([machine transitionWithEvent:nil]);
+  EXPECT_EQ(middle, [machine previousState]);
+  EXPECT_EQ(end, [machine currentState]);
+  EXPECT_TRUE([machine isAtEnd]);
 }
